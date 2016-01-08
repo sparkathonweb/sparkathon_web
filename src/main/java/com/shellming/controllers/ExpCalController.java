@@ -3,6 +3,12 @@ package com.shellming.controllers;
 import com.google.gson.Gson;
 import com.shellming.models.RunExpModel;
 import org.apache.commons.io.IOUtils;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.storage.StorageLevel;
+import org.apache.spark.streaming.StreamingContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,5 +51,21 @@ public class ExpCalController extends BaseController{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @RequestMapping(value = "test")
+    public void testSpark(){
+
+    }
+
+    public static void main(String[] args) {
+        JavaSparkContext context = new JavaSparkContext("spark://192.168.57.129:7077", "sparkathon");
+//        context.addFile("test.txt");
+        JavaRDD rdd = context.textFile("text.txt");
+//        rdd.persist(StorageLevel.DISK_ONLY());
+//        Configuration conf = context.hadoopConfiguration();
+//        StreamingContext ssc = new StreamingContext();
+//        ssc.textFileStream();
+
     }
 }

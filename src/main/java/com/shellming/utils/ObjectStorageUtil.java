@@ -1,6 +1,7 @@
 package com.shellming.utils;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.hadoop.conf.Configuration;
 import org.openstack4j.api.OSClient;
 import org.openstack4j.model.common.DLPayload;
 import org.openstack4j.model.common.Identifier;
@@ -30,6 +31,25 @@ public class ObjectStorageUtil {
     private final String CONTAINER = "default";
 
     private Access access;
+
+    public static void main(String[] args) {
+//        Configuration hconf = context.hadoopConfiguration();
+//        String name = "sparkathon";
+//        String prefix = "fs.swift.service." + name;
+//        String auth_url = "https://identity.open.softlayer.com/v3";
+//        String username = "c43f8662cd9e476ab78809def031589d";
+//        String password = "fqSrU(6fo}WDS8Z7";
+//        hconf.set(prefix + ".auth.url", auth_url);
+//        hconf.set(prefix + ".username", username);
+//        hconf.set(prefix + ".tenant", username);
+//        hconf.set(prefix + ".auth.endpoint.prefix", "endpoints");
+//        hconf.setInt(prefix + ".http.port", 8080);
+//        hconf.set(prefix + ".apikey", password);
+//        hconf.setBoolean(prefix + ".public", True);
+//        hconf.set(prefix + ".use.get.auth", "true");
+//        hconf.setBoolean(prefix + ".location-aware", False);
+//        hconf.set(prefix + ".password", password);
+    }
 
     public ObjectStorageUtil() {
         String auth_url = "https://identity.open.softlayer.com/v3";
@@ -100,11 +120,4 @@ public class ObjectStorageUtil {
         os.objectStorage().objects().delete(CONTAINER, key);
     }
 
-    public static void main(String[] args) {
-        ObjectStorageUtil objectStorageUtil = new ObjectStorageUtil();
-        List<String> keys = objectStorageUtil.list();
-        for(String key : keys){
-            objectStorageUtil.delete(key);
-        }
-    }
 }

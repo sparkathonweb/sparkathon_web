@@ -10,6 +10,7 @@ sourceCompatibility = 1.7
 repositories {
     mavenLocal()
     maven { url 'http://mirrors.ibiblio.org/maven2/' }
+    jcenter()
 }
 
 dependencies {
@@ -25,6 +26,13 @@ dependencies {
     compile 'org.pacesys:openstack4j-core:2.0.9'
     compile 'org.pacesys.openstack4j.connectors:openstack4j-jersey2:2.0.9'
     compile 'commons-io:commons-io:2.4'
+    compile('org.apache.spark:spark-core_2.10:1.6.0'){
+            exclude group: 'org.slf4j'
+    }
+
+    compile('org.apache.spark:spark-streaming_2.10:1.6.0'){
+        exclude group: 'org.slf4j'
+    }
 }
 
 task wrapper(type: Wrapper) {
